@@ -1,6 +1,6 @@
 package com.example.SpringBootDemo;
 
-import com.helloworld.HelloController;
+import com.controller.HelloController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
