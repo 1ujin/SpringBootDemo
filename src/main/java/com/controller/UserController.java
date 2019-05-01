@@ -11,7 +11,7 @@ import java.util.*;
 // 通过这里配置使下面的映射都在 /users 下
 @RequestMapping(value = "/users")
 public class UserController {
-    // 向上转型,创建线程安全的 Map
+    // 向上转型, 创建线程安全的 Map
     static Map<Long, User> users = Collections.synchronizedMap(new HashMap<Long, User>());
 
     // 请求类型: Get, 功能说明: 查询用户列表
