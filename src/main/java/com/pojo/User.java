@@ -1,4 +1,4 @@
-package com.domain;
+package com.pojo;
 
 public class User {
     private Long id;

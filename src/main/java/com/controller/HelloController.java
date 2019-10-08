@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
 
-    @Value("${com.didispace.blog.name}")
+    // 冒号后为默认值
+    @Value("${com.didispace.blog.name:default_name}")
     private String name;
     @Value("${com.didispace.blog.title}")
     private String title;

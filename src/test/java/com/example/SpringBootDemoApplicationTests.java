@@ -1,4 +1,4 @@
-package com.example.SpringBootDemo;
+package com.example;
 
 import com.controller.HelloController;
 import org.junit.Before;
@@ -25,7 +25,7 @@ public class SpringBootDemoApplicationTests {
     private MockMvc mvc;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         mvc = MockMvcBuilders.standaloneSetup(new HelloController()).build();
     }
 
