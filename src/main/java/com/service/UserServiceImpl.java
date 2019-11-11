@@ -1,12 +1,14 @@
 package com.service;
 
 import com.pojo.User;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class UserServiceImpl implements UserService {
     private static Map<Long, User> userRepository = Collections.synchronizedMap(new HashMap<>());
 

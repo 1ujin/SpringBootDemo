@@ -16,7 +16,7 @@ import java.util.Arrays;
 
 @SpringBootApplication
 // 默认情况下spring boot只会扫描启动类当前包和以下的包, 添加其他的包
-@ComponentScan({"com.controller", "com.exception", "com.interceptor", "com.filter"})
+@ComponentScan({"com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo"})
 public class SpringBootDemoApplication implements ApplicationRunner, CommandLineRunner {
 
     /**
