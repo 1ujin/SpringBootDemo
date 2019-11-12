@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8" />
+    <title>Add Users</title>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("button").click(function() {
+                var usermodel = {
+                    id : 3,
+                    name : "Ginger",
+                    age: 30
+                };
+                var requestJSON = JSON.stringify(usermodel);
+                $.ajax({
+                    type : "POST",
+                    url : "http://localhost:8080/user",
+                    headers : {
+                        "Content-Type" : "application/json"
+                    },
+                    data : requestJSON,
+                    success : function(data) {
+                        alert(data);
+                    },
+                    error : function(data) {
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+<button>Click here to submit the form</button>
+</body>
+</html>

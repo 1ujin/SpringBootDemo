@@ -11,12 +11,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.Arrays;
 
 @SpringBootApplication
 // 默认情况下spring boot只会扫描启动类当前包和以下的包, 添加其他的包
-@ComponentScan({"com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo"})
+@ComponentScan({"com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo", "com"})
 public class SpringBootDemoApplication implements ApplicationRunner, CommandLineRunner {
 
     /**
@@ -73,5 +75,15 @@ public class SpringBootDemoApplication implements ApplicationRunner, CommandLine
          * [C = char
          * [L = any non-primitives(Object)
          */
+    }
+
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**").allowedOrigins("*");
+            }
+        };
     }
 }
