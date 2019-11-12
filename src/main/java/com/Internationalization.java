@@ -15,14 +15,14 @@ public class Internationalization implements WebMvcConfigurer {
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver resolver = new SessionLocaleResolver();
-        resolver.setDefaultLocale(Locale.CHINA);
+        resolver.setDefaultLocale(Locale.US);
         return resolver;
     }
 
     @Bean
     public LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
-        interceptor.setParamName("language");
+        interceptor.setParamName("lang");
         return interceptor;
     }
 
