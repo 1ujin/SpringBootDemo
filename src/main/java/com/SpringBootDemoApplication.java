@@ -10,7 +10,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -52,7 +51,8 @@ public class SpringBootDemoApplication implements ApplicationRunner, CommandLine
     }
 
     // 产生一个Bean对象，然后这个Bean对象交给Spring管理。产生这个Bean对象的方法Spring只会调用一次，随后这个Spring将会将这个Bean对象放在自己的IOC容器中
-    public @Bean RestTemplate getRestTemplate() {
+    public @Bean
+    RestTemplate getRestTemplate() {
         System.out.println("返回RestTemple实例");
         return new RestTemplate();
     }
