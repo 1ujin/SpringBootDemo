@@ -10,6 +10,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -17,8 +18,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.Arrays;
 
 @SpringBootApplication
+// 可选择定时任务
+// @EnableScheduling
 // 默认情况下spring boot只会扫描启动类当前包和以下的包, 添加其他的包
-@ComponentScan({"com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo", "com"})
+@ComponentScan({"com.component", "com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo", "com"})
 public class SpringBootDemoApplication implements ApplicationRunner, CommandLineRunner {
 
     /**
