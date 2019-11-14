@@ -27,7 +27,9 @@ spring boot默认加载文件的路径：
             <maxIndex>2</maxIndex>
         </rollingPolicy>
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
-            <maxFileSize>${LOG_FILE_MAX_SIZE}</maxFileSize>
+            <!--启动Eureka时不能获取application.properties中的logging.file.max-size-->
+            <!--<maxFileSize>${LOG_FILE_MAX_SIZE}</maxFileSize>-->
+            <maxFileSize>10kb</maxFileSize>
         </triggeringPolicy>
     </appender>
 

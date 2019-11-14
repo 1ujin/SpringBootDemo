@@ -2,21 +2,31 @@ package com;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Arrays;
 
 @SpringBootApplication
+// @EnableEurekaServer
+@EnableZuulProxy
+@EnableSwagger2
 // 可选择定时任务
 // @EnableScheduling
 // 默认情况下spring boot只会扫描启动类当前包和以下的包, 添加其他的包
@@ -37,8 +47,8 @@ public class SpringBootDemoApplication implements ApplicationRunner, CommandLine
     @Value("${LOG_FILE}")
     private static String log_file;
 
-    // @Autowired
-    // RestTemplate restTemplate;
+    @Autowired
+    RestTemplate restTemplate;
 
     public static void main(String[] args) {
         logger.info("this is a info message");
@@ -88,5 +98,10 @@ public class SpringBootDemoApplication implements ApplicationRunner, CommandLine
                 registry.addMapping("/**").allowedOrigins("*");
             }
         };
+    }
+
+    @Bean
+    public Docket userApi() {
+        return new Docket(DocumentationType.SWAGGER_2).select().apis(RequestHandlerSelectors.basePackage("com")).build();
     }
 }
