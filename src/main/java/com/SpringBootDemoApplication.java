@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 // import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -29,6 +30,7 @@ import java.util.Arrays;
 // @EnableEurekaServer
 @EnableZuulProxy
 @EnableSwagger2
+@EnableConfigServer
 // 可选择定时任务
 // @EnableScheduling
 // 默认情况下spring boot只会扫描启动类当前包和以下的包, 添加其他的包
