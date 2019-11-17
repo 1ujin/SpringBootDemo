@@ -1,6 +1,5 @@
 package com;
 
-import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 // import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.cloud.config.server.EnableConfigServer;
@@ -16,6 +16,7 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -36,7 +37,7 @@ import java.util.Arrays;
 // @EnableConfigServer
 // @RefreshScope // 会造成循环依赖
 // @EnableScheduling // 可选择定时任务
-@EnableAdminServer //报错: Calling [asyncError()] is not valid for a request with Async state [MUST_DISPATCH]
+// @EnableAdminServer //报错: Calling [asyncError()] is not valid for a request with Async state [MUST_DISPATCH]
 // 默认情况下spring boot只会扫描启动类当前包和以下的包, 添加其他的包
 @ComponentScan({"com.component", "com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo", "com"})
 public class SpringBootDemoApplication implements ApplicationRunner, CommandLineRunner {
