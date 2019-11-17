@@ -12,7 +12,7 @@ import java.util.Date;
 public class Scheduler {
     private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 
-    // cron、fixedDelay、fixedRate 三者之间不能共存
+    // 注解中的参数 cron、fixedDelay、fixedRate 三者之间不能共存
 
     // https://blog.csdn.net/u011244202/article/details/54382466
     @Scheduled(cron = "*/5 * * * * ?")

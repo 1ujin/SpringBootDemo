@@ -11,9 +11,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 // import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.cloud.config.server.EnableConfigServer;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -27,12 +29,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.Arrays;
 
 @SpringBootApplication
-// @EnableEurekaServer
-@EnableZuulProxy
+// @EnableEurekaServer // 无法显示Eureka主页
+@EnableZuulProxy // 可选择开启代理,产生转发效果,保持原有链接
 @EnableSwagger2
-@EnableConfigServer
-// 可选择定时任务
-// @EnableScheduling
+// @EnableConfigServer
+// @RefreshScope // 会造成循环依赖
+// @EnableScheduling // 可选择定时任务
+// @EnableAdminServer //报错: Calling [asyncError()] is not valid for a request with Async state [MUST_DISPATCH]
 // 默认情况下spring boot只会扫描启动类当前包和以下的包, 添加其他的包
 @ComponentScan({"com.component", "com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo", "com"})
 public class SpringBootDemoApplication implements ApplicationRunner, CommandLineRunner {
