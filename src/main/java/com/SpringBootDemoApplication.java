@@ -1,5 +1,6 @@
 package com;
 
+// import brave.sampler.Sampler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 // import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+// import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
+// import org.springframework.cloud.sleuth.sampler.ProbabilityBasedSampler;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -27,6 +30,7 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+// import zipkin2.server.internal.EnableZipkinServer;
 
 import java.util.Arrays;
 
@@ -38,6 +42,7 @@ import java.util.Arrays;
 // @RefreshScope // 会造成循环依赖
 // @EnableScheduling // 可选择定时任务
 // @EnableAdminServer //报错: Calling [asyncError()] is not valid for a request with Async state [MUST_DISPATCH]
+// @EnableZipkinServer
 // 默认情况下spring boot只会扫描启动类当前包和以下的包, 添加其他的包
 @ComponentScan({"com.component", "com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo", "com"})
 public class SpringBootDemoApplication implements ApplicationRunner, CommandLineRunner {
@@ -52,6 +57,7 @@ public class SpringBootDemoApplication implements ApplicationRunner, CommandLine
      */
     // 日志配置需要放到加载的路径中
     private static final Logger logger = LoggerFactory.getLogger(SpringBootDemoApplication.class);
+    private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(SpringBootDemoApplication.class.getName());
 
     @Value("${LOG_FILE}")
     private static String log_file;
@@ -60,6 +66,7 @@ public class SpringBootDemoApplication implements ApplicationRunner, CommandLine
     RestTemplate restTemplate;
 
     public static void main(String[] args) {
+        LOG.log(java.util.logging.Level.INFO, "服务启动！");
         logger.info("this is a info message");
         logger.warn("this is a warn message");
         logger.error("this is a error message");
@@ -114,4 +121,10 @@ public class SpringBootDemoApplication implements ApplicationRunner, CommandLine
     public Docket userApi() {
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(new ApiInfoBuilder().title("Swagger2 演示").build()).select().apis(RequestHandlerSelectors.basePackage("com")).build();
     }
+
+    // 从2.0.0.RELEASE开始弃用AlwaysSampler
+    // @Bean
+    // public Sampler defaultSampler() {
+    //     return Sampler.ALWAYS_SAMPLE;
+    // }
 }
