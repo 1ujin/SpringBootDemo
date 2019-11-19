@@ -16,6 +16,7 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 // import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 // import org.springframework.cloud.sleuth.sampler.ProbabilityBasedSampler;
+import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -43,6 +44,7 @@ import java.util.Arrays;
 // @EnableScheduling // 可选择定时任务
 // @EnableAdminServer //报错: Calling [asyncError()] is not valid for a request with Async state [MUST_DISPATCH]
 // @EnableZipkinServer
+@EnableHystrix
 // 默认情况下spring boot只会扫描启动类当前包和以下的包, 添加其他的包
 @ComponentScan({"com.component", "com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo", "com"})
 public class SpringBootDemoApplication implements ApplicationRunner, CommandLineRunner {
