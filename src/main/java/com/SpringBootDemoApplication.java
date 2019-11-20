@@ -46,7 +46,7 @@ import java.util.Arrays;
 // @EnableZipkinServer
 @EnableHystrix
 // 默认情况下spring boot只会扫描启动类当前包和以下的包, 添加其他的包
-@ComponentScan({"com.component", "com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo", "com"})
+@ComponentScan({"com.component", "com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo", "com.config", "com"})
 public class SpringBootDemoApplication implements ApplicationRunner, CommandLineRunner {
 
     /**
@@ -124,7 +124,7 @@ public class SpringBootDemoApplication implements ApplicationRunner, CommandLine
         return new Docket(DocumentationType.SWAGGER_2).apiInfo(new ApiInfoBuilder().title("Swagger2 演示").build()).select().apis(RequestHandlerSelectors.basePackage("com")).build();
     }
 
-    // 从2.0.0.RELEASE开始弃用AlwaysSampler
+    // Zipkin服务器，从2.0.0.RELEASE开始弃用AlwaysSampler
     // @Bean
     // public Sampler defaultSampler() {
     //     return Sampler.ALWAYS_SAMPLE;
