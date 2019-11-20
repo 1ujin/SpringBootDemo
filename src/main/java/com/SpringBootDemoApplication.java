@@ -37,7 +37,7 @@ import java.util.Arrays;
 
 @SpringBootApplication
 // @EnableEurekaServer // 无法显示Eureka主页
-@EnableZuulProxy // 可选择开启代理,产生转发效果,保持原有链接
+// @EnableZuulProxy // 可选择开启代理,产生转发效果,保持原有链接,注意区别于重定向
 @EnableSwagger2
 // @EnableConfigServer
 // @RefreshScope // 会造成循环依赖

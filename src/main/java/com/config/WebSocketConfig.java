@@ -11,7 +11,7 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     /**
-     * 添加一个/hoody-websocket端点，客户端就可以通过这个端点来进行连接；
+     * 添加一个/gs-guide-websocket端点，客户端就可以通过这个端点来进行连接；
      * withSockJS作用是添加SockJS支持,
      * setAllowedOrigins(String... var1) 指定可以跨域访问的地址
      */

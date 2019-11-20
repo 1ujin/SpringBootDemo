@@ -2,20 +2,20 @@ package com.pojo;
 
 public class Greeting {
 
-    private String content;
+    private String name;
 
     public Greeting() {
     }
 
-    public Greeting(String content) {
-        this.content = content;
+    public Greeting(String name) {
+        this.name = name;
     }
 
-    public String getContent() {
-        return content;
+    public String getName() {
+        return name;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setName(String name) {
+        this.name = name;
     }
 }
