@@ -1,0 +1,7 @@
+DROP TABLE people IF EXISTS;
+
+CREATE TABLE people (
+    id DOUBLE NOT NULL PRIMARY KEY,
+    name VARCHAR(20),
+    age INTEGER
+);
