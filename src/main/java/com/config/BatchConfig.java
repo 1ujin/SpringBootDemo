@@ -23,7 +23,7 @@ import org.springframework.core.io.ClassPathResource;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableBatchProcessing
+@EnableBatchProcessing // 如果要实现多Job的情况，需要把EnableBatchProcessing注解的modular设置为true，让每个Job使用自己的ApplicationContext
 public class BatchConfig {
 
     @Autowired
