@@ -1,6 +1,7 @@
 package com;
 
 // import brave.sampler.Sampler;
+import com.service.KafkaSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,6 +68,9 @@ public class SpringBootDemoApplication implements ApplicationRunner, CommandLine
     @Autowired
     RestTemplate restTemplate;
 
+    @Autowired
+    private KafkaSender sender;
+
     public static void main(String[] args) {
         LOG.log(java.util.logging.Level.INFO, "服务启动！");
         logger.info("this is a info message");
@@ -89,6 +93,7 @@ public class SpringBootDemoApplication implements ApplicationRunner, CommandLine
     public void run(ApplicationArguments arg) {
         System.out.println("在Tomcat启动后执行Application Runner");
         System.out.println(arg);
+        sender.send("Spring Kafka Producer and Consumer Example");
     }
 
     @Override
