@@ -10,6 +10,7 @@ import org.springframework.web.util.HtmlUtils;
 @Controller
 public class GreetingController {
 
+    // index.html(#name) -> app.js(sendName()) -> "/app/greet" -> WebSocketConfig.configureMessageBroker() -> "/greet" -> GreetingController.greeting() -> "/topic/greetings" -> WebSocketConfig.configureMessageBroker() -> "/topic/greetings" -> app.js(connect()) -> index.html(#greetings)
     @MessageMapping(value = "/greet")
     @SendTo(value = "/topic/greetings")
     public String greeting(Greeting greeting) throws InterruptedException {

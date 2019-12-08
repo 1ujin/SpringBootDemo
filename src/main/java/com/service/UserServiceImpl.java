@@ -1,8 +1,10 @@
 package com.service;
 
+import com.mapper.UserMapper;
 import com.pojo.User;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -11,6 +13,9 @@ import java.util.Map;
 @Service
 public class UserServiceImpl implements UserService {
     private static Map<Long, User> userRepository = Collections.synchronizedMap(new HashMap<>());
+
+    @Resource
+    private UserMapper userMapper;
 
     static {
         User user = new User();
@@ -42,6 +47,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long id) {
         userRepository.remove(id);
+    }
+
+    @Override
+    public User getUser(Long id) {
+        return userMapper.selectUserById(id);
     }
 
     @Override

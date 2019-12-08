@@ -17,6 +17,11 @@ public class UserServiceController {
         return new ResponseEntity<>(userService.getUsers(), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/user/{id}")
+    public ResponseEntity<Object> getUser(@PathVariable Long id) {
+        return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Object> updateUser(@PathVariable("id") Long id, @RequestBody User user) {
         userService.updateUser(id, user);
@@ -31,6 +36,7 @@ public class UserServiceController {
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public ResponseEntity<Object> createUser(@RequestBody User user) {
+        System.out.println(user.getName());
         userService.createUser(user);
         return new ResponseEntity<>("user is created successfully", HttpStatus.CREATED);
     }

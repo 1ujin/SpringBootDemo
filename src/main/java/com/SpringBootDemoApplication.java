@@ -2,6 +2,8 @@ package com;
 
 // import brave.sampler.Sampler;
 // import com.service.KafkaSender;
+import org.mybatis.spring.annotation.MapperScan;
+import org.mybatis.spring.annotation.MapperScans;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Arrays;
 
+// Controller -> Service -> Domain -> Repository(Collection-Oriented) -> POJO(Entity for DataBase, Model for Service) -> DAO/Mapper(CRUD, Database-Oriented) -> Mybatis -> JDBC(HikariCP) -> Database
+
 @SpringBootApplication
 // @EnableEurekaServer // 无法显示Eureka主页
 // @EnableZuulProxy // 可选择开启代理,产生转发效果,保持原有链接,注意区别于重定向
@@ -46,8 +50,9 @@ import java.util.Arrays;
 // @EnableAdminServer //报错: Calling [asyncError()] is not valid for a request with Async state [MUST_DISPATCH]
 // @EnableZipkinServer
 @EnableHystrix
-// 默认情况下spring boot只会扫描启动类当前包和以下的包, 添加其他的包
-@ComponentScan({"com.component", "com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo", "com.config", "com"})
+// 默认情况下spring boot只会扫描启动类当前包及其子包, 添加其他的包
+// @ComponentScan({"com.component", "com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo", "com.config", "com"})
+@MapperScan("com.mapper")
 public class SpringBootDemoApplication implements ApplicationRunner, CommandLineRunner {
 
     /**
