@@ -38,7 +38,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Arrays;
 
-// Controller -> Service -> Domain -> Repository(Collection-Oriented) -> POJO(Entity for DataBase, Model for Service) -> DAO/Mapper(CRUD, Database-Oriented) -> Mybatis -> JDBC(HikariCP) -> Database
+// Controller(Interface Adapters) -> Service(Use Cases: Application -> Domain -> Infrastructure) -> Repository(Collection-Oriented) -> POJO(Entity for DataBase, Model for Service) -> DAO/Mapper(Use Cases(MapperInterface) and Presenter(mapper.xml): CRUD, Database-Oriented) -> Mybatis -> JDBC(HikariCP) -> Database
 
 @SpringBootApplication
 // @EnableEurekaServer // 无法显示Eureka主页
