@@ -1,6 +1,5 @@
-package com.example;
+package com.controller;
 
-import com.controller.UserController;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -46,7 +45,7 @@ public class UserControllerTests {
                 .param("name", "测试大师")
                 .param("age", "20");
         mvc.perform(request)
-                .andExpect(content().string(equalTo("create success")));
+                .andExpect(content().string(equalTo("User is created successfully")));
 
         // 3、get获取user列表，应该有刚才插入的数据
         request = get("/users/");
@@ -59,7 +58,7 @@ public class UserControllerTests {
                 .param("name", "测试终极大师")
                 .param("age", "30");
         mvc.perform(request)
-                .andExpect(content().string(equalTo("update success")));
+                .andExpect(content().string(equalTo("User is updated successfully")));
 
         // 5、get一个id为1的user
         request = get("/users/1");
@@ -69,7 +68,7 @@ public class UserControllerTests {
         // 6、del删除id为1的user
         request = delete("/users/1");
         mvc.perform(request)
-                .andExpect(content().string(equalTo("delete success")));
+                .andExpect(content().string(equalTo("User is deleted successfully")));
 
         // 7、get查一下user列表，应该为空
         request = get("/users/");

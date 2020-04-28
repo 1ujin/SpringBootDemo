@@ -27,7 +27,7 @@ public class UserController {
     // 除了 @ModelAttribute 绑定参数之外，还可以通过 @RequestParam 从页面中传递参数
     public String postUser(@ModelAttribute User user) {
         users.put(user.getId(), user);
-        return "create success";
+        return "User is created successfully";
     }
 
     // 请求类型: Get, 功能说明: 根据 id 查询一个用户
@@ -55,6 +55,6 @@ public class UserController {
     // 处理"/users/{id}"的DELETE请求，用来删除User
     public String deleteUser(@PathVariable Long id) {
         users.remove(id);
-        return "delete success";
+        return "User is deleted successfully";
     }
 }
