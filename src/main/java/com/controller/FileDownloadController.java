@@ -1,5 +1,7 @@
 package com.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -14,6 +16,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 
+@Api(tags = "下载文件")
 @RestController
 public class FileDownloadController {
     @RequestMapping(value = "/download/{filename}", method = RequestMethod.GET)

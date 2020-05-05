@@ -13,13 +13,13 @@ import java.util.List;
 
 @RestController
 public class SwaggerAPIController {
-    @Autowired
-    UserService userService;
-
-    @ApiOperation(value="获取用户列表", notes="返回全部用户，容器为数组。")
-    @ApiImplicitParam(name = "无", required = false, dataType = "User")
-    @RequestMapping(value = "/api/user", method = RequestMethod.GET)
-    public List<Object> getUsers() {
-        return new ArrayList<>(userService.getUsers());
-    }
+    // @Autowired
+    // UserService userService;
+    //
+    // @ApiOperation(value="获取用户列表", notes="返回全部用户，容器为数组。")
+    // @ApiImplicitParam(name = "无", required = false, dataType = "User")
+    // @RequestMapping(value = "/api/user", method = RequestMethod.GET)
+    // public List<Object> getUsers() {
+    //     return new ArrayList<>(userService.getUsers());
+    // }
 }

@@ -131,7 +131,7 @@ public class SpringBootDemoApplication implements ApplicationRunner, CommandLine
     // 配置Swagger2 http://blog.didispace.com/springbootswagger2/
     @Bean
     public Docket userApi() {
-        return new Docket(DocumentationType.SWAGGER_2).apiInfo(new ApiInfoBuilder().title("Swagger2 演示").build()).select().apis(RequestHandlerSelectors.basePackage("com")).build();
+        return new Docket(DocumentationType.SWAGGER_2).apiInfo(new ApiInfoBuilder().title("Swagger2 演示").description("这里是 description").version("这里是 version").build()).select().apis(RequestHandlerSelectors.basePackage("com")).build();
     }
 
     // Zipkin服务器，从2.0.0.RELEASE开始弃用AlwaysSampler

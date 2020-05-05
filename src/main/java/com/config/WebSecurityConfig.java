@@ -15,6 +15,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // For example: Use only Http Basic and not form login.
         // 配置登入，logoutUrl默认为"/logout"可以不写
         http
+                .csrf().disable()
                 .authorizeRequests()
                 .anyRequest()
                 .authenticated()
