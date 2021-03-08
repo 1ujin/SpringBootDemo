@@ -3,9 +3,12 @@ package com.pojo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.io.Serializable;
+
 // Models 中无论如何只有 User 这一个实体类。不是加上 @ApiModel 就可以加入 Swagger-UI 的 Models 中的，必须要在 controller 层中关联这个实体类。
 @ApiModel(value = "用户", description = "这里是描述")
-public class User {
+public class User implements Serializable {
+    private static final long serialVersionUID = -992421524791416992L;
     @ApiModelProperty(value = "用户ID")
     private Long id;
     @ApiModelProperty(notes = "用户名")

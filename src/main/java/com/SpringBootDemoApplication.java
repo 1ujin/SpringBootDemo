@@ -24,6 +24,7 @@ import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -52,7 +53,7 @@ import java.util.Arrays;
 @EnableHystrix
 // 默认情况下spring boot只会扫描启动类当前包及其子包, 添加其他的包
 // @ComponentScan({"com.component", "com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo", "com.config", "com"})
-@MapperScan("com.mapper")
+// @MapperScan("com.mapper") // 效果等同于在 Mapper 类上注解 @Mapper
 public class SpringBootDemoApplication implements ApplicationRunner, CommandLineRunner {
 
     /**
@@ -71,11 +72,10 @@ public class SpringBootDemoApplication implements ApplicationRunner, CommandLine
     private static String log_file;
 
     @Autowired
-    RestTemplate restTemplate;
+    private RestTemplate restTemplate;
 
     // @Autowired
     // private KafkaSender sender;
-
     public static void main(String[] args) {
         LOG.log(java.util.logging.Level.INFO, "服务启动！");
         logger.info("this is a info message");

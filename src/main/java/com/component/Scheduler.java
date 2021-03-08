@@ -22,6 +22,7 @@ public class Scheduler {
         System.out.println("Java cron job expression:: " + strDate);
     }
 
+    // fixedRate 调用固定周期（以毫秒为单位）执行方法。就是上一次开始执行时间点之后延迟执行
     @Scheduled(fixedRate = 1000)
     public void fixedRateSch() {
         Date date = new Date();
@@ -29,6 +30,8 @@ public class Scheduler {
         System.out.println("Fixed Rate scheduler:: " + strDate);
     }
 
+    // initialDelay 在第一次执行fixedRate（）或fixedDelay（）任务之前延迟（以毫秒为单位）
+    // fixedDelay 上次调用结束和下一次调用结束之间的固定周期（以毫秒为单位）执行方法。就是上一次执行完毕时间点之后延迟执行
     @Scheduled(initialDelay = 3000, fixedDelay = 1000)
     public void fixedDelaySch() {
         Date date = new Date();

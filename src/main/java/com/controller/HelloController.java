@@ -1,18 +1,18 @@
 package com.controller;
 
 // import brave.sampler.Sampler;
+
 import com.SpringBootDemoApplication;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.logging.Level;
 
+// @RestController = @Controller + @ResponseBody
 @RestController
 public class HelloController {
     private static final java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(SpringBootDemoApplication.class.getName());

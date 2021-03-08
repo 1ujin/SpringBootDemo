@@ -15,7 +15,7 @@ public class BlogProperties {
 
     @Value("${com.didispace.blog.value}")
     private String value;
-    @Value("${com.didispace.blog.number}")
+    @Value("#{11-2}")
     private Integer number;
     @Value("${com.didispace.blog.bignumber}")
     private Long bignumber;

@@ -1,21 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- MyBatis JdbcType介绍 http://www.mybatis.cn/archives/150.html -->
+<!-- namespace 绑定 Mapper/DAO 接口 -->
 <mapper namespace="com.mapper.UserMapper">
-    <resultMap id="BaseResultMap" type="com.pojo.User">
+    <!--整合第三方二级缓存库-->
+    <!--逐出算法 LRU FIFO SOFT WEAK-->
+    <cache type="com.redis.cache.MybatisRedisCache" eviction="LRU"/>
+
+    <!--会被解析为ParameterMap对象-->
+    <parameterMap id="UserParamMap" type="com.pojo.User">
+    </parameterMap>
+
+    <!--会被解析为BoundSql对象-->
+    <sql id="Base_Column_List">
+        id, name, age
+    </sql>
+
+    <!--会被解析为MappedStatement对象，其id对应namespace中绑定的Mapper接口方法-->
+    <!--#{}是占位符，预编译处理；${}是拼接符，字符串替换，没有预编译处理，建议用前者，可以防止SQL注入-->
+    <!--flushCache该语句查询完清空本地缓存和二级缓存，useCache和上文中的cache标记只要有一个开启，该语句就进行二级缓存-->
+    <!--where 元素知道只有在一个以上的if条件有值的情况下才去插入“WHERE”子句。而且，若最后的内容是“AND”或“OR”开头的，where 元素也知道如何将他们去除-->
+    <select id="selectUserById" parameterType="java.lang.Long" resultMap="UserResultMap" flushCache="true" useCache="true">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM ${table.user}
+        <where>
+            <if test="id != null">
+                AND id = #{id, jdbcType=DOUBLE}
+            </if>
+        </where>
+    </select>
+
+    <!--会被解析为ResultMapping对象，用于将查询的结果映射回实体类对象-->
+    <!--实体类的包名前缀已经被配置省略-->
+    <resultMap id="UserResultMap" type="User">
+        <!--根据构造器的顺序-->
         <constructor>
+            <!--用idArg来映射主键字段-->
+            <!--传值为空时，必须指定Type-->
             <idArg column="id" javaType="java.lang.Long" jdbcType="DOUBLE"/>
             <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR"/>
             <arg column="age" javaType="java.lang.Integer" jdbcType="INTEGER"/>
         </constructor>
     </resultMap>
-
-    <sql id="Base_Column_List">
-        id, name, age
-    </sql>
-
-    <select id="selectUserById" parameterType="java.lang.Long" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from user where id = #{id, jdbcType=DOUBLE}
-    </select>
 </mapper>

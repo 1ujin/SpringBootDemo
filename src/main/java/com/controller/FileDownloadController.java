@@ -19,6 +19,7 @@ import java.io.UnsupportedEncodingException;
 @Api(tags = "下载文件")
 @RestController
 public class FileDownloadController {
+    // 此处可以直接用 GetMapping
     @RequestMapping(value = "/download/{filename}", method = RequestMethod.GET)
     public ResponseEntity<Object> fileDownload(@PathVariable(name = "filename") String filename) throws FileNotFoundException, UnsupportedEncodingException {
         System.out.println("下载文件: " + filename);

@@ -15,6 +15,7 @@ import java.io.IOException;
 @Api(tags = "上传文件")
 @RestController
 public class FileUploadController {
+    // 此处可以直接用 PostMapping
     @RequestMapping(value = "/upload", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     // 可以使用一个POJO来包装RequestParam所注释的参数，这个POJO本身没有要求额外的注解，但是POJO本身必须包含和请求参数完全匹配的字段，标准的setter/getter，和一个无参的构造器 https://www.jianshu.com/p/b4c8d8de4dad
     public String fileUpload(@RequestParam("file") MultipartFile file) throws IOException {
