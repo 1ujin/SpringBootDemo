@@ -1,0 +1,6 @@
+server:
+  port: 8081
+com:
+  didispace:
+    blog:
+      name: 哈哈
