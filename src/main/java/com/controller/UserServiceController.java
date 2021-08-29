@@ -7,13 +7,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+
 @RestController
 public class UserServiceController {
     @Autowired
     UserService userService;
 
     @RequestMapping(value = {"/user/{id}", "/user"})
-    public ResponseEntity<Object> getUser(@PathVariable(required = false) Long id) {
+    public ResponseEntity<Object> getUser(@PathVariable(required = false) Long id, HttpServletRequest request) {
+        System.out.println("Cookies:");
+        Arrays.stream(request.getCookies()).forEach(c -> System.out.println(c.getName() + " : " + c.getValue()));
         return new ResponseEntity<>(userService.getUser(id), HttpStatus.OK);
     }
 

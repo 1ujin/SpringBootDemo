@@ -2,6 +2,7 @@ package com;
 
 // import brave.sampler.Sampler;
 // import com.service.KafkaSender;
+import com.component.SpringContextUtil;
 import org.mybatis.spring.annotation.MapperScan;
 import org.mybatis.spring.annotation.MapperScans;
 import org.slf4j.Logger;
@@ -52,7 +53,8 @@ import java.util.Arrays;
 // @EnableZipkinServer
 @EnableHystrix
 // 默认情况下spring boot只会扫描启动类当前包及其子包, 添加其他的包
-// @ComponentScan({"com.component", "com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo", "com.config", "com"})
+// @ComponentScan({"com.component"}) // 不显示设置的话，MybatisRedisCache会在SpringContextUtil之前初始化报空指针
+@ComponentScan({"com.component", "com.controller", "com.exception", "com.interceptor", "com.filter", "com.service", "com.pojo", "com.config", "com"})
 // @MapperScan("com.mapper") // 效果等同于在 Mapper 类上注解 @Mapper
 public class SpringBootDemoApplication implements ApplicationRunner, CommandLineRunner {
 
@@ -74,7 +76,6 @@ public class SpringBootDemoApplication implements ApplicationRunner, CommandLine
     @Autowired
     private RestTemplate restTemplate;
 
-    // @Autowired
     // private KafkaSender sender;
     public static void main(String[] args) {
         LOG.log(java.util.logging.Level.INFO, "服务启动！");

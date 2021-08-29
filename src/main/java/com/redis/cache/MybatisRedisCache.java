@@ -3,8 +3,8 @@ package com.redis.cache;
 import com.component.SpringContextUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.pojo.User;
 import org.apache.ibatis.cache.Cache;
+import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import java.io.IOException;
@@ -16,7 +16,7 @@ public class MybatisRedisCache implements Cache {
 
     public MybatisRedisCache(String id) {
         this.id = id;
-        redisTemplate = (RedisTemplate) SpringContextUtil.getApplicationContext().getBean("redisTemplate");
+        redisTemplate = (RedisTemplate) SpringContextUtil.getBean("redisTemplate");
     }
 
     @Override
@@ -65,12 +65,16 @@ public class MybatisRedisCache implements Cache {
     @Override
     public void clear() {
         System.out.println("CLEAR");
-        redisTemplate.delete(getId());
+        redisTemplate.execute((RedisCallback) connection -> {
+            connection.flushDb();
+            return null;
+        });
     }
 
     @Override
     public int getSize() {
-        Long size = redisTemplate.opsForHash().size(getId());
+        // Long size = redisTemplate.opsForHash().size(getId());
+        Long size = (Long) redisTemplate.execute((RedisCallback) connection -> connection.dbSize());
         System.out.println("SIZE: " + size);
         return size == null ? 0 : size.intValue();
     }

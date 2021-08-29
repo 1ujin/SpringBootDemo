@@ -3,8 +3,8 @@ package com.controller;
 // import brave.sampler.Sampler;
 
 import com.SpringBootDemoApplication;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
+// import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+// import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,9 +39,9 @@ public class HelloController {
     // }
 
     @RequestMapping("/hystrix")
-    @HystrixCommand(fallbackMethod = "fallback_sleep", commandProperties = {
-            @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
-    })
+    // @HystrixCommand(fallbackMethod = "fallback_sleep", commandProperties = {
+    //         @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "5000")
+    // })
     public String sleepSeconds(@RequestParam(value = "sleep", required = false, defaultValue = "0") String sleep) throws InterruptedException {
         Thread.sleep(Integer.parseInt(sleep));
         return "Sleep " + Integer.parseInt(sleep) + " milliseconds.";

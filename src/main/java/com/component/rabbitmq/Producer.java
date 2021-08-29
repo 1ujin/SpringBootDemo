@@ -15,7 +15,7 @@ public class Producer {
     }
 
     public void send2DirectTestQueue(String massage) {
-        rabbitTemplate.convertAndSend(RabbitConfig.TEST_DIRECT_EXCHANGE, RabbitConfig.DIRECT_ROUTINGKEY, massage);
+        rabbitTemplate.convertAndSend(RabbitConfig.TEST_DIRECT_EXCHANGE, RabbitConfig.DIRECT_ROUTING_KEY, massage);
     }
 
     public void send2TopicTestAQueue(String massage) {

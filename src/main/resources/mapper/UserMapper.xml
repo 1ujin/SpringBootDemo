@@ -32,7 +32,7 @@
     </select>
 
     <!--会被解析为ResultMapping对象，用于将查询的结果映射回实体类对象-->
-    <!--实体类的包名前缀已经被配置省略-->
+    <!--实体类的包名前缀已经被配置省略：mybatis.type-aliases-package=com.pojo-->
     <resultMap id="UserResultMap" type="User">
         <!--根据构造器的顺序-->
         <constructor>
