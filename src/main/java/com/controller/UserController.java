@@ -34,7 +34,7 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     // url 中的 id 可通过 @PathVariable 绑定到函数的参数中
     public User getUser(@PathVariable Long id) {
-        if (!users.containsKey(id)) throw new UserNotfoundException();
+        if (!users.containsKey(id)) throw new UserNotfoundException("User not found");
         return users.get(id);
     }
 
@@ -42,7 +42,7 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     // 处理"/users/{id}"的PUT请求，用来更新User信息
     public ResponseEntity<Object> putUser(@PathVariable Long id, @ModelAttribute User user) {
-        if (!users.containsKey(id)) throw new UserNotfoundException();
+        if (!users.containsKey(id)) throw new UserNotfoundException("User not found");
         User u = users.get(id);
         u.setName(user.getName());
         u.setAge(user.getAge());

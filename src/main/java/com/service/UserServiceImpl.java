@@ -12,16 +12,10 @@ public class UserServiceImpl implements UserService {
     private static Map<Long, User> userRepository = Collections.synchronizedMap(new HashMap<>());
 
     static {
-        User user = new User();
-        user.setId(1L);
-        user.setName("Jack");
-        user.setAge(20);
+        User user = new User(1L, "Jack", 20);
         userRepository.put(user.getId(), user);
 
-        User user1 = new User();
-        user1.setId(2L);
-        user1.setName("Tom");
-        user1.setAge(24);
+        User user1 = new User(2L, "Tom", 24);
         userRepository.put(user1.getId(), user1);
     }
 

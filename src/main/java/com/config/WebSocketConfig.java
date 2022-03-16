@@ -23,7 +23,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        /**
+        /*
          * config.enableSimpleBroker("/topic","/user");
          * 这句表示在topic和user这两个域上可以向客户端发消息
          * config.setUserDestinationPrefix("/user/");

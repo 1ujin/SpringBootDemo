@@ -4,11 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.UrlAuthorizationConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.PortMapperImpl;
+import org.springframework.security.web.PortResolverImpl;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 
 import javax.sql.DataSource;
+import java.util.Collections;
 
 // Pom文件里面如果是springboot start这种类型的依赖，就不需要加
 // 因为SpringBootAutoConfigure这个jar包里的SpringBootWebSecurityConfiguration这个类
@@ -22,9 +26,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        PortMapperImpl portMapper = new PortMapperImpl();
+        // 将"/login"从8080映射到8080，避免被ssl从8080映射到8443
+        portMapper.setPortMappings(Collections.singletonMap("8080", "8080"));
+        PortResolverImpl portResolver = new PortResolverImpl();
+        portResolver.setPortMapper(portMapper);
+        LoginUrlAuthenticationEntryPoint entryPoint = new LoginUrlAuthenticationEntryPoint("/login");
+        entryPoint.setPortMapper(portMapper);
+        entryPoint.setPortResolver(portResolver);
         // For example: Use only Http Basic and not form login.
         // 配置登入，logoutUrl默认为"/logout"可以不写
         http
+                // .exceptionHandling()
+                // .authenticationEntryPoint(entryPoint)
+                // .and()
                 .csrf()
                 .disable()
                 .authorizeRequests()

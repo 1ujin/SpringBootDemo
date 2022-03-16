@@ -1,5 +1,8 @@
 package com.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.pojo.User;
 import io.swagger.annotations.Api;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -30,6 +33,22 @@ public class FileUploadController {
         FileOutputStream fileOutputStream = new FileOutputStream(convertFile);
         fileOutputStream.write(file.getBytes());
         fileOutputStream.close();
+        return "Upload successfully.";
+    }
+
+    @ResponseBody
+    @PostMapping("/multi_upload")
+    public String fileUpload(@RequestParam("file1") MultipartFile file1, @RequestPart User user, @RequestParam("file2") MultipartFile file2) {
+        System.out.println(file1.getOriginalFilename());
+        System.out.println(user);
+        System.out.println(file2.getOriginalFilename());
+        return "Upload successfully.";
+    }
+
+    @ResponseBody
+    @PostMapping("/upload_user")
+    public String fileUpload(User user) {
+        System.out.println(user);
         return "Upload successfully.";
     }
 }
