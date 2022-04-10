@@ -31,3 +31,6 @@ LOG_PATH_IS_UNDEFINEDLOG_FILE_IS_UNDEFINED.log
 
 ### VS Code ###
 .vscode/
+/.mvn/
+mvnw
+mvnw.cmd
